@@ -2,6 +2,8 @@ const express = require('express');
 const BodyParser = require('body-parser');
 const { PORT } = require('./configs/config');
 
+const { models, sequelize } = require('./models');
+
 const app = express();
 
 app.use(BodyParser.json());
