@@ -1,6 +1,7 @@
 const express = require('express');
 const BodyParser = require('body-parser');
 const { PORT } = require('./configs/config');
+const sequelize = require('./models').sequelize;
 
 const app = express();
 
@@ -20,6 +21,9 @@ app.use((err, _req, res, _next) => {
     });
   }
 });
-app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`);
+
+sequelize.sync().done(() =>{
+  app.listen(PORT, ()=>{
+    console.log(`server running on port ${PORT}`);
+  });
 });
